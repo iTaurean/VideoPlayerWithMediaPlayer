@@ -1,0 +1,2 @@
+# Android视频播放
+基于Android SurfaceView和MediaPlayer实现视频播放。调用MediaPlayer.setNextMediaPlayer()实现视频的无缝拼接。
