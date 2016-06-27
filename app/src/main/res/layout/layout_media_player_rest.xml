@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_rest_countdown"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_media_play_rest"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+
+    <com.android.lvxin.videoplayer.CircleProgressBar
+        android:id="@+id/rest_countdown"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="45dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/rest_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rest_countdown"
+        android:layout_centerHorizontal="true"
+        android:text="@string/media_player_rest_skip"
+        android:textColor="@color/white"
+        android:textSize="14sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/rest_countdown">
+
+        <TextView
+            android:id="@+id/rest_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/media_player_rest_text"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/rest_text"
+            android:paddingBottom="15dp"
+            android:text="“"
+            android:textColor="@color/white"
+            android:textSize="50dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/rest_text"
+            android:paddingTop="50dp"
+            android:text="”"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            />
+    </RelativeLayout>
+</RelativeLayout>

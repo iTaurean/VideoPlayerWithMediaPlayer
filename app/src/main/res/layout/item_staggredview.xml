@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_item_staggredview">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_staggredview_thumbnail" />
+
+    <include android:id="@+id/item_video_title" layout="@layout/item_staggredview_detail"/>
+    <include android:id="@+id/item_video_size" layout="@layout/item_staggredview_detail"/>
+    <include android:id="@+id/item_video_duration" layout="@layout/item_staggredview_detail"/>
+    <include android:id="@+id/item_video_progess" layout="@layout/item_staggredview_detail"/>
+
+</LinearLayout>

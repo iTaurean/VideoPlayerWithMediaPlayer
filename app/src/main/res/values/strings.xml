@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">VideoPlayerWithMediaPlayer</string>
+    <string name="video_title_name">Title</string>
+    <string name="video_size_name">Size</string>
+    <string name="video_duration_name">Duration</string>
+    <string name="video_progress_name">Progress</string>
+    <string name="no_video_hint">No Video!!!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="media_player_rest_skip">跳过</string>
+    <string name="media_player_rest_text">休息一下，保证更好的调整质量</string>
 </resources>

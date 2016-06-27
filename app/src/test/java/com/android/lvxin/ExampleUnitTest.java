@@ -1,4 +1,4 @@
-package com.android.lvxin.videoplayerwithmediaplayer;
+package com.android.lvxin.videoplayer;
 
 import org.junit.Test;
 

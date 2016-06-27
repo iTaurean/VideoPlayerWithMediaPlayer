@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="black_trans_85">#D9000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="trans_white_26">#42ffffff</color> <!-- 26% trans -->
+    <color name="trans_black_26">#42000000</color> <!-- 26% trans -->
+    <color name="theme_button_deep_bg">#7c99d6</color> <!-- 深色按钮的背景颜色 -->
+    <color name="theme_button_deep_bg_trans_70">#4c7c99d6</color> <!-- 深色按钮的背景颜色 -->
+    <color name="trans_blank_bg_70">#4cc2d3f5</color>
+    <color name="heart_rate_red">#FD1D4B</color>
+    <color name="theme_color">#3c6cde</color> <!-- 主题色 -->
 </resources>
