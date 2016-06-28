@@ -56,28 +56,37 @@ public class MediasLocalDataSource implements MediasDataSource {
 
     private List<VideoInfo> getVideosFromStorage() {
         List<VideoInfo> videos = new ArrayList<>();
-        String[] videoColumns = {
-                MediaStore.Video.Media._ID,
-                MediaStore.Video.Media.DATA,
-                MediaStore.Video.Media.TITLE,
-                MediaStore.Video.Media.SIZE,
-                MediaStore.Video.Media.DURATION,
-        };
 
-        Cursor cursor = mContext.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoColumns, null, null, null);
-        int totalCount = cursor.getCount();
-        cursor.moveToFirst();
-        for (int i = 0; i < totalCount; i++) {
-            int videoId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
-            String videoPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
-            long videoDuration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));
-            String videoTitle = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
-            int videoSize = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE));
-            VideoInfo item = new VideoInfo(videoId, videoPath, videoTitle, videoSize, videoDuration);
-            videos.add(item);
-            cursor.moveToNext();
-        }
-        cursor.close();
+//        String[] videoColumns = {
+//                MediaStore.Video.Media._ID,
+//                MediaStore.Video.Media.DATA,
+//                MediaStore.Video.Media.TITLE,
+//                MediaStore.Video.Media.SIZE,
+//                MediaStore.Video.Media.DURATION,
+//        };
+//
+//        Cursor cursor = mContext.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoColumns, null, null, null);
+//        int totalCount = cursor.getCount();
+//        cursor.moveToFirst();
+//        for (int i = 0; i < totalCount; i++) {
+//            int videoId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
+//            String videoPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+//            long videoDuration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));
+//            String videoTitle = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
+//            int videoSize = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE));
+//            VideoInfo item = new VideoInfo(videoId, videoPath, videoTitle, videoSize, videoDuration);
+//            videos.add(item);
+//            cursor.moveToNext();
+//        }
+//        cursor.close();
+        VideoInfo videoInfo = new VideoInfo();
+        videoInfo.videoName = "video_unit_1_1.mp4";
+        videoInfo.videoDuration = 3;
+        videos.add(videoInfo);
+         videoInfo = new VideoInfo();
+        videoInfo.videoName = "video_unit_2_1.mp4";
+        videoInfo.videoDuration = 1;
+        videos.add(videoInfo);
 
         return videos;
     }

@@ -4,8 +4,6 @@ import android.content.ContentUris;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -37,16 +35,7 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
     private int currentAudioIndex = 0;
     private int currentVideoRepeats = 0;
 
-    private MediaPlayer mMediaPlayer;
-    Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            if (mMediaPlayer.isPlaying()) {
-                mMediaPlayer.pause();
-            }
-        }
-    };
+    private VideoPlayerPresenter mVideoPlayer;
     private MediaPlayer mAudioPlayer;
     private MediaPlayer mBGAudioPlayer;
     private Context mContext;
@@ -57,7 +46,10 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
     private long remainTime; // 剩余播放时间
     private int restTime; // 休息时长
     private MediaPlayerContract.MediaStatus status;
+
     private boolean isResting = false; // 是否处于休息状态
+
+    private boolean isPrepareRest = false;
     private boolean isPrepareStart = true;
     private boolean isResumeStart = false;
     private boolean isResumePause = false;
@@ -121,10 +113,6 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
         return ContentUris.withAppendedId(contentUri, id);
     }
 
-    private Uri getVideoUri(long id) {
-        return getMediaUri(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, id);
-    }
-
     private Uri getAudioUri(long id) {
         return getMediaUri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id);
     }
@@ -148,15 +136,23 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
     }
 
     private void setupVideoPlayer(final Context context, SurfaceHolder surfaceHolder) {
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setDisplay(surfaceHolder);
-        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+        mVideoPlayer = new VideoPlayerPresenter().setup(surfaceHolder);
+        String videoPath = getDataSourcePath(getVideo(currentVideoIndex).videoName);
+        mVideoPlayer.prepareAsync(videoPath);
+
+        mVideoPlayer.setOnPreparedListener(new VideoPlayerPresenter.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                onVideoPrepared(mp);
+            }
+        });
+
+        mVideoPlayer.setOnCompletionListener(new VideoPlayerPresenter.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 onVideoPlayCompleted(context, mp);
             }
         });
-        prepareAndStartVideo(context);
     }
 
     private void setupAudioPlayer(final Context context) {
@@ -166,56 +162,6 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
         // 背景音乐
 //        mBGAudioPlayer = new MediaPlayer();
 //        prepareAudio(context, mBGAudioPlayer, getAudioUri(Tools.generateAudioItems(context).get(1).audioId));
-    }
-
-    @Override
-    public void prepareAndStartVideo(Context context) {
-        try {
-            mMediaPlayer.setDataSource(context, getVideoUri(mVideoData.get(currentVideoIndex).videoId));
-            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    if (isPrepareStart) {
-                        onStartPlay();
-                        isPrepareStart = false;
-                    } else if (isResumeStart) {
-                        mMediaPlayer.seekTo(videoPlayedPosition);
-                        mMediaPlayer.start();
-                        isResumeStart = false;
-                    } else if (isResumePause) {
-                        mMediaPlayer.seekTo(videoPlayedPosition);
-                        mMediaPlayer.start();
-                        // 为了保证不黑屏
-                        handler.sendEmptyMessageDelayed(0, 100);
-
-                        isResumePause = false;
-                    }
-                }
-            });
-            mMediaPlayer.prepareAsync();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void prepareVideo(Context context) {
-        try {
-            mMediaPlayer.setDataSource(context, getVideoUri(mVideoData.get(currentVideoIndex).videoId));
-            mMediaPlayer.prepareAsync();
-            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public void onPrepared(MediaPlayer mp) {
-                    mMediaPlayer.start();
-                    if (mMediaPlayer.isPlaying()) {
-                        mMediaPlayer.pause();
-                        mMediaPlayer.seekTo(0);
-                    }
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -237,11 +183,29 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
 
     @Override
     public void onStartPlay() {
-        mMediaPlayer.start();
+        mVideoPlayer.start();
         mView.startProgressBar();
 
         mView.updateCircleProgress(currentVideoIndex + 1);
         mView.updateRemainTimeText(remainTime);
+    }
+
+    @Override
+    public void onVideoPrepared(MediaPlayer mp) {
+        //                    mMediaPlayer.setVolume(0.5f, 0.5f);
+        if (isPrepareStart) {
+            onStartPlay();
+            isPrepareStart = false;
+        } else if (isResumeStart) {
+            mVideoPlayer.seekToStart(videoPlayedPosition);
+            isResumeStart = false;
+        } else if (isResumePause) {
+            mVideoPlayer.seekToPause(videoPlayedPosition);
+            isResumePause = false;
+        } else if (isPrepareRest) {
+            mVideoPlayer.start();
+            mVideoPlayer.pauseAndSeekTo(0);
+        }
     }
 
     @Override
@@ -255,18 +219,18 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
 
             // 更新视频相关信息
             currentVideoRepeats = 0;
-            mMediaPlayer.reset();
+            mVideoPlayer.reset();
             ++currentVideoIndex;
             if (mVideoData.size() > currentVideoIndex) {
                 // 休息倒计时页面
                 // 暂停进度条
-                onRest(getVideo(currentVideoIndex).restTime);
+                onRest(getVideo(currentVideoIndex - 1).restTime);
             } else {
                 Toast.makeText(context, "视频播放完毕", Toast.LENGTH_SHORT).show();
             }
         } else {
             // 重复播放当前多媒体文件
-            mMediaPlayer.start();
+            mVideoPlayer.start();
             // TODO 是否需要更换不同的音频
         }
     }
@@ -285,7 +249,9 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
         VideoInfo videoInfo = mVideoData.get(currentVideoIndex);
         mView.updateProgressBar(true, videoInfo.videoDuration * videoInfo.repeats);
         //准备下一个视频
-        prepareVideo(mContext);
+        isPrepareRest = true;
+        String dataSource = getDataSourcePath(videoInfo.videoName);
+        mVideoPlayer.prepareAsync(dataSource);
     }
 
     @Override
@@ -305,7 +271,6 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
         mView.showRestPage(false, 0);
         mView.updateCircleProgress(currentVideoIndex + 1);
 
-//        prepareAndStartVideo(mContext);
         // 播放视频及相应的控件
         onStartPlay();
 
@@ -316,9 +281,10 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
     @Override
     public void continuePlayMedia() {
         // 继续播放视频
-        if (null != mMediaPlayer && !mMediaPlayer.isPlaying()) {
-            mMediaPlayer.start();
+        if (null != mVideoPlayer && !mVideoPlayer.isPlaying()) {
+            mVideoPlayer.start();
         }
+
         // 继续播放音频
         if (null != mAudioPlayer && !mAudioPlayer.isPlaying()) {
             mAudioPlayer.start();
@@ -335,9 +301,10 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
     public void pauseMedia() {
         mView.pauseRemainTime();
         // 暂停多媒体文件
-        if (null != mMediaPlayer && mMediaPlayer.isPlaying()) {
-            mMediaPlayer.pause();
-            videoPlayedPosition = mMediaPlayer.getCurrentPosition();
+
+        if (null != mVideoPlayer && mVideoPlayer.isPlaying()) {
+            mVideoPlayer.pause();
+            videoPlayedPosition = mVideoPlayer.getCurrentPosition();
         }
         if (null != mAudioPlayer && mAudioPlayer.isPlaying()) {
             mAudioPlayer.pause();
@@ -407,9 +374,12 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
         VideoInfo videoInfo = mVideoData.get(currentVideoIndex);
         mView.updateProgressBar(isNext, videoInfo.repeats * videoInfo.videoDuration);
         // 2. 结束当前视频,开始下一个/上一个视频
-        mMediaPlayer.reset();
+//        mMediaPlayer.reset();
+        mVideoPlayer.reset();
         isPrepareStart = true;
-        prepareAndStartVideo(context);
+//        prepareAndStartVideo(context);
+        String dataSource = getDataSourcePath(getVideo(currentVideoIndex).videoName);
+        mVideoPlayer.prepareAsync(dataSource);
         // 3. 结束当前音频, 开始下一个/上一个音频
         mAudioPlayer.reset();
         prepareAudio(context);
@@ -453,7 +423,7 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
         if (isResting) {
             this.status = MediaPlayerContract.MediaStatus.IS_RESTING;
         } else {
-            if (mMediaPlayer.isPlaying()) {
+            if (mVideoPlayer.isPlaying()) {
                 this.status = MediaPlayerContract.MediaStatus.IS_PLAYING;
             } else {
                 this.status = MediaPlayerContract.MediaStatus.PAUSE;
@@ -463,10 +433,7 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
 
     @Override
     public void onRelease() {
-        if (null != mMediaPlayer) {
-            mMediaPlayer.release();
-        }
-        mMediaPlayer = null;
+        mVideoPlayer.release();
 
         if (null != mAudioPlayer) {
             mAudioPlayer.release();
@@ -477,5 +444,10 @@ public class MediaPlayerPresenter implements MediaPlayerContract.Presenter {
             mBGAudioPlayer.release();
         }
         mBGAudioPlayer = null;
+    }
+
+    private String getDataSourcePath(String fileName) {
+        Log.i(TAG, "getDataSourcePath: " + mContext.getExternalFilesDir(null).getAbsolutePath());
+        return mContext.getExternalFilesDir(null).getAbsolutePath() + "/" + fileName;
     }
 }

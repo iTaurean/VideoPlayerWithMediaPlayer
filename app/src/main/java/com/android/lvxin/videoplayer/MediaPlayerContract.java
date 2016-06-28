@@ -180,20 +180,6 @@ public interface MediaPlayerContract {
         void setupMediaPlayer(Context context, SurfaceHolder surfaceHolder);
 
         /**
-         * 准备并开始播放视频
-         *
-         * @param context
-         */
-        void prepareAndStartVideo(Context context);
-
-        /**
-         * 准备视频
-         *
-         * @param context
-         */
-        void prepareVideo(Context context);
-
-        /**
          * 准备音频
          *
          * @param context
@@ -204,6 +190,8 @@ public interface MediaPlayerContract {
          * 开始播放
          */
         void onStartPlay();
+
+        void onVideoPrepared(MediaPlayer mp);
 
         /**
          * 视频播放完成后的处理

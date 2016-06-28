@@ -17,6 +17,9 @@ public class AudioInfo implements Serializable {
     public long audioProgress;
     public int repeats;
 
+    public AudioInfo() {
+    }
+
     public AudioInfo(int audioId, String audioPath, String audioName, int audioSize, long audioDuration) {
         this.audioPath = audioPath;
         this.audioId = audioId;
