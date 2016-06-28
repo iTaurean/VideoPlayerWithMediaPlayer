@@ -19,6 +19,15 @@ import java.util.List;
  */
 public interface MediaPlayerContract {
 
+    /**
+     * 媒体文件播放状态
+     */
+    enum MediaStatus {
+        IS_PLAYING, // 正在播放
+        PAUSE, // 暂停
+        IS_RESTING // 休息中
+    }
+
     interface View extends BaseView<Presenter> {
         // =========================底部条形进度条相关=========================
 
@@ -124,6 +133,11 @@ public interface MediaPlayerContract {
          */
         void releaseHandler();
 
+        /**
+         * 移除handler队列中的消息
+         */
+        void removeHandlerMessage();
+
     }
 
     interface Presenter extends BasePresenter {
@@ -211,7 +225,12 @@ public interface MediaPlayerContract {
         /**
          * 重新打开时恢复播放
          */
-        void resumeFromBackground();
+        void resumeAndStartMedia();
+
+        /**
+         * 重新打开时回复并处于暂停状态
+         */
+        void resumeAndPauseMedia();
 
         /**
          * 下一个
@@ -293,5 +312,18 @@ public interface MediaPlayerContract {
          * @return
          */
         boolean hasRemainTime();
+
+        /**
+         * 获取多媒体文件的播放状态
+         *
+         * @return
+         */
+        MediaStatus getMediaStatus();
+
+        /**
+         * 设置多媒体文件的播放状态
+         */
+        void setMediaStatus();
+
     }
 }

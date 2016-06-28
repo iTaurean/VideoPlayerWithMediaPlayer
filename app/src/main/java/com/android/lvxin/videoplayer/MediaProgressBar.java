@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -22,11 +23,11 @@ public class MediaProgressBar extends View {
 
     private float maxValue; // 进度条的最大值
     private float currentValue; // 进度条当前值
+    private float savedCurrentValue; // 暂停时的进度值
     private int maxClips = 5; // 进度条平分的总段数
     private int currentClips = 1; // 当前播放的视频段位置
     private long currentDuration = 10; // 当前播放视频的总时长
     private float widthPerClip; // 每段进度条的长度
-    private int currentPassedTimes = 0; // 当前视频播放的时间
 
     private Paint clipPaint;
     private Paint progressPaint;
@@ -40,7 +41,6 @@ public class MediaProgressBar extends View {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             invalidate();
-            ++currentPassedTimes;
             currentValue += (widthPerClip / currentDuration);
 
             if (maxValue == 0 || currentValue < maxValue) {
@@ -74,13 +74,15 @@ public class MediaProgressBar extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        progressPaint.setColor(context.getResources().getColor(R.color.black_trans_85));
+        currentValue = Math.max(currentValue, savedCurrentValue);
+
+        progressPaint.setColor(ContextCompat.getColor(context, R.color.black_trans_85));
         canvas.drawRect(0, 0, getWidth(), getHeight(), progressPaint);
 
-        progressPaint.setColor(context.getResources().getColor(R.color.theme_color));
+        progressPaint.setColor(ContextCompat.getColor(context, R.color.theme_color));
         canvas.drawRect(0, 0, currentValue, getHeight(), progressPaint);
 
-        clipPaint.setColor(context.getResources().getColor(R.color.white));
+        clipPaint.setColor(ContextCompat.getColor(context, R.color.white));
 
         for (int i = 0; i < maxClips; i++) {
             int left = (int) widthPerClip * (i + 1);
@@ -141,7 +143,6 @@ public class MediaProgressBar extends View {
      */
     public void onUpdate(boolean isNext, long mediaDuration) {
         handler.removeMessages(0);
-        currentPassedTimes = 0;
         currentDuration = mediaDuration;
         currentClips = isNext ? currentClips + 1 : currentClips - 1;
         currentValue = (currentClips - 1) * widthPerClip;
@@ -149,6 +150,7 @@ public class MediaProgressBar extends View {
     }
 
     public void onPause() {
+        savedCurrentValue = currentValue;
         if (null != handler) {
             handler.removeMessages(0);
         }
@@ -156,13 +158,13 @@ public class MediaProgressBar extends View {
     }
 
     public void onResume() {
+        currentValue = savedCurrentValue;
         if (null != handler) {
-            handler.sendEmptyMessageDelayed(0, 1000);
+            handler.sendEmptyMessage(0);
         }
     }
 
     public void onStop() {
-        currentPassedTimes = 0;
         currentClips = 0;
         if (null != handler) {
             handler.removeMessages(0);
@@ -173,9 +175,5 @@ public class MediaProgressBar extends View {
         final float scale = context.getResources().getDisplayMetrics().density;
 
         return (int) (dpValue * scale + 0.5f);
-    }
-
-    interface OnPreparedCallback {
-        void onPrepared();
     }
 }

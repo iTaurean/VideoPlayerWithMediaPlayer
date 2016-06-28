@@ -196,7 +196,6 @@ public class MediaPlayerFragment extends Fragment
 
     @Override
     public void stopCountdownProgress() {
-        Log.i(TAG, "stopCountdownProgress: ");
         handler.removeMessages(HANDLER_TIMER_DOWN_COUNTER);
     }
 
@@ -212,7 +211,6 @@ public class MediaPlayerFragment extends Fragment
 
     @Override
     public void updateRemainTimeText(long remainTime) {
-        Log.i(TAG, "updateRemainTimeText: remainTime=" + remainTime);
         mRemainTimeText.setText(String.valueOf(remainTime));
         if (mPresenter.hasRemainTime()) {
             handler.sendMessageDelayed(handler.obtainMessage(HANDLER_TIME_REMAIN), 1000);
@@ -221,49 +219,60 @@ public class MediaPlayerFragment extends Fragment
 
     @Override
     public void pauseRemainTime() {
-        Log.i(TAG, "pauseRemainTime: ");
         handler.removeMessages(HANDLER_TIME_REMAIN);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.i(TAG, "onPrepare: ");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.i(TAG, "onResume: ");
 
-        //TODO 处理播放页从后台到前台时的情况
-//        if (null != handler) {
-//            handler.sendMessageDelayed(handler.obtainMessage(1), 1000);
-//        } else {
-////            mPresenter.continuePlayMedia();
-//            mPresenter.resumeFromBackground();
-//            mProgressBar.onResume();
-//        }
+        if (null == mPresenter.getMediaStatus()) {
+            return;
+        }
+        switch (mPresenter.getMediaStatus()) {
+            case IS_RESTING:
+                mPresenter.updateRestCountDown();
+                break;
+            case IS_PLAYING:
+                mPresenter.resumeAndStartMedia();
+                mProgressBar.onResume();
+                break;
+            case PAUSE:
+                mPresenter.resumeAndPauseMedia();
+            default:
+                break;
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.i(TAG, "onPause: ");
+        // 更新多媒体文件的播放状态
+        mPresenter.setMediaStatus();
+        // 移除消息队列
+        removeHandlerMessage();
+        mProgressBar.onPause();
+        if (mPresenter.getMediaStatus() == MediaPlayerContract.MediaStatus.IS_PLAYING) {
+            mPresenter.pauseMedia();
+        }
 
-        // TODO 播放页从前台到后台时的处理
-//        if (null != handler) {
-//            handler.removeMessages(1);
-//        } else {
-//            mPresenter.pauseMedia();
-//            mProgressBar.onPause();
-//        }
+        // 播放页从前台到后台时的处理
+        // 情形1：播放时
+        // 情形2：暂停时
+        // 情形3：休息时
+        // 暂停进度条
+        // 暂停时间播放
+        // 暂停左下角圆形进度条
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "onDestroy: ");
         if (null != mProgressBar) {
             mProgressBar.onStop();
         }
@@ -278,6 +287,15 @@ public class MediaPlayerFragment extends Fragment
             handler.removeMessages(HANDLER_MEDIA_CONTROLLER);
             handler.removeMessages(HANDLER_TIME_REMAIN);
             handler = null;
+        }
+    }
+
+    @Override
+    public void removeHandlerMessage() {
+        if (null != handler) {
+            handler.removeMessages(HANDLER_TIMER_DOWN_COUNTER);
+            handler.removeMessages(HANDLER_MEDIA_CONTROLLER);
+            handler.removeMessages(HANDLER_TIME_REMAIN);
         }
     }
 
@@ -369,7 +387,6 @@ public class MediaPlayerFragment extends Fragment
             super.handleMessage(msg);
             switch (msg.what) {
                 case HANDLER_TIMER_DOWN_COUNTER:
-                    Log.i(TAG, "handleMessage: count down");
                     fragment.getPresenter().updateRestCountDown();
                     break;
                 case HANDLER_MEDIA_CONTROLLER:
@@ -377,7 +394,6 @@ public class MediaPlayerFragment extends Fragment
                     fragment.showMediaController(false);
                     break;
                 case HANDLER_TIME_REMAIN:
-                    Log.i(TAG, "handleMessage: remain time");
                     fragment.getPresenter().updateRemainTime();
                     break;
                 default:
