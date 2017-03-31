@@ -1,5 +1,7 @@
 package com.android.lvxin.videos;
 
+import android.content.Context;
+
 import com.android.lvxin.BasePresenter;
 import com.android.lvxin.BaseView;
 import com.android.lvxin.data.VideoInfo;
@@ -22,6 +24,9 @@ public interface VideosContract {
         void openVideoDetailUi(List<VideoInfo> videos);
 
         void showLoadingVideosError();
+
+        String getProjectDir();
+        Context getContext();
 
     }
 

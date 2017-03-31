@@ -1,0 +1,71 @@
+{
+  "msg": "操作成功",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "name": "HIIT燃脂初级",
+        "pictureName": "pic_ranzhi.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 2,
+        "name": "HIIT唤醒",
+        "pictureName": "pic_huanxing.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 3,
+        "name": "HIIT燃脂进阶",
+        "pictureName": "pic_ranzhi_jinjie.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 4,
+        "name": "HIIT活力",
+        "pictureName": "pic_huoli.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 5,
+        "name": "4分钟Tabata燃脂",
+        "pictureName": "pic_tabata.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 6,
+        "name": "HIIT全身燃动",
+        "pictureName": "pic_randong.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 7,
+        "name": "HIIT燃脂强化",
+        "pictureName": "pic_ranzhi_qianghua.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      }
+    ]
+  },
+  "recode": 1
+}

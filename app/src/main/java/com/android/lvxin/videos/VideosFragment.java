@@ -1,5 +1,6 @@
 package com.android.lvxin.videos;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -87,7 +88,7 @@ public class VideosFragment extends Fragment implements VideosContract.View {
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        mPresenter.start(getContext());
     }
 
     @Override
@@ -102,7 +103,7 @@ public class VideosFragment extends Fragment implements VideosContract.View {
 
     @Override
     public void openVideoDetailUi(List<VideoInfo> videos) {
-        MediaPlayerActivity.start(getContext(), videos);
+//        MediaPlayerActivity.start(getContext(), videos);
     }
 
     @Override
@@ -115,4 +116,13 @@ public class VideosFragment extends Fragment implements VideosContract.View {
 
     }
 
+    @Override
+    public String getProjectDir() {
+        return getContext().getExternalFilesDir(null).getAbsolutePath();
+    }
+
+    @Override
+    public Context getContext() {
+        return super.getContext();
+    }
 }

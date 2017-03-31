@@ -1,0 +1,210 @@
+{
+  "msg": "操作成功",
+  "data": {
+    "warningSwitch": 0,
+    "userPlanList": [
+      {
+        "memberIcon": "",
+        "userId": 76864
+      },
+      {
+        "memberIcon": "",
+        "userId": 444
+      },
+      {
+        "memberIcon": "/share/jianzou/upload/1396810588920160807213222968.jpg",
+        "userId": 5608
+      },
+      {
+        "memberIcon": "",
+        "userId": 1396
+      },
+      {
+        "memberIcon": "/share/jianzou/upload/1398962603520161025201725815.jpg",
+        "userId": 15583
+      },
+      {
+        "memberIcon": "",
+        "userId": 922123
+      },
+      {
+        "memberIcon": "/share/jianzou/upload/1506886349120160229140733556.jpg",
+        "userId": 55923
+      },
+      {
+        "memberIcon": "/share/jianzou/upload/1395701311020150923095447611.jpg",
+        "userId": 3062
+      },
+      {
+        "memberIcon": "/share/jianzou/upload/1385771246720151009200717426.jpg",
+        "userId": 19822
+      },
+      {
+        "memberIcon": "",
+        "userId": 400
+      }
+    ],
+    "lessLowheartrateVideoFn": "misc_audio_3_61",
+    "planVideoList": [
+      {
+        "planVideoName": "俯卧撑",
+        "restTime": 0,
+        "planType": 2,
+        "introList": "misc_audio_1_1,audio_3_70",
+        "unitName": "video_unit_20_3",
+        "playTimes": 5,
+        "movementTime": 20,
+        "pictureUrl": "/share/data/spider/pic/plan/plan3/images/picture_index_1_3.jpg",
+        "introMovementTime": 8,
+        "unitList": "misc_audio_1_5,misc_audio_1_65*3,misc_audio_1_6,misc_audio_1_65*3,misc_audio_1_7,misc_audio_1_65*3,misc_audio_1_8,misc_audio_1_65*3,misc_audio_1_9,misc_audio_1_65*3",
+        "playSort": 1,
+        "guideType": 1,
+        "restList": null,
+        "videoUrl": "/share/data/spider/pic/plan/plan3/unit/video_unit_20_3.mp4",
+        "detailIntroList": "audio_1_76,misc_audio_1_4",
+        "introName": "video_unit_20_3",
+        "introPlayTimes": 2,
+        "planId": 3,
+        "id": 67,
+        "actionDesc": "1、全程收紧腹部核心，挺直背部\r\n2、身体触地，手离开地面后再快速撑起\r\n3、训练过程中可以穿鞋"
+      },
+      {
+        "planVideoName": "高抬腿",
+        "restTime": 0,
+        "planType": 2,
+        "introList": "misc_audio_1_2,audio_3_71",
+        "unitName": "video_unit_21_3",
+        "playTimes": 20,
+        "movementTime": 20,
+        "pictureUrl": "/share/data/spider/pic/plan/plan3/images/picture_index_2_3.jpg",
+        "introMovementTime": 8,
+        "unitList": "audio_1_75*13,misc_audio_3_37,misc_audio_1_9,misc_audio_1_8,misc_audio_1_7,misc_audio_1_6,misc_audio_1_5",
+        "playSort": 2,
+        "guideType": 2,
+        "restList": null,
+        "videoUrl": "/share/data/spider/pic/plan/plan3/unit/video_unit_21_3.mp4",
+        "detailIntroList": "misc_audio_1_44,misc_audio_1_4",
+        "introName": "video_unit_21_3",
+        "introPlayTimes": 2,
+        "planId": 3,
+        "id": 68,
+        "actionDesc": "1、挺直背部，目视前方，脚尖点地\r\n2、保持身体稳定，用力摆臀、抬腿\r\n3、速度越快燃脂效果越好"
+      },
+      {
+        "planVideoName": "Burpees",
+        "restTime": 0,
+        "planType": 2,
+        "introList": "misc_audio_1_2,audio_1_60",
+        "unitName": "video_unit_23_3",
+        "playTimes": 5,
+        "movementTime": 20,
+        "pictureUrl": "/share/data/spider/pic/plan/plan3/images/picture_index_4_3.jpg",
+        "introMovementTime": 8,
+        "unitList": "misc_audio_1_5,misc_audio_1_65*3,misc_audio_1_6,misc_audio_1_65*3,misc_audio_1_7,misc_audio_1_65*3,misc_audio_1_8,misc_audio_1_65*3,misc_audio_1_9,misc_audio_1_65*3",
+        "playSort": 4,
+        "guideType": 1,
+        "restList": null,
+        "videoUrl": "/share/data/spider/pic/plan/plan3/unit/video_unit_23_3.mp4",
+        "detailIntroList": "audio_1_76,misc_audio_1_4",
+        "introName": "video_unit_23_3",
+        "introPlayTimes": 2,
+        "planId": 3,
+        "id": 70,
+        "actionDesc": "1、身体触地，双手先推起上半身，再将双腿快速向腹部收回\r\n2、双手在头后击掌之后快速下蹲，没有站立过程\r\n3、跳的越高燃脂效果越好"
+      },
+      {
+        "planVideoName": "Burpees",
+        "restTime": 0,
+        "planType": 2,
+        "introList": "misc_audio_1_2,audio_1_60",
+        "unitName": "video_unit_23_3",
+        "playTimes": 5,
+        "movementTime": 20,
+        "pictureUrl": "/share/data/spider/pic/plan/plan3/images/picture_index_4_3.jpg",
+        "introMovementTime": 8,
+        "unitList": "misc_audio_1_5,misc_audio_1_65*3,misc_audio_1_6,misc_audio_1_65*3,misc_audio_1_7,misc_audio_1_65*3,misc_audio_1_8,misc_audio_1_65*3,misc_audio_1_9,misc_audio_1_65*3",
+        "playSort": 5,
+        "guideType": 1,
+        "restList": null,
+        "videoUrl": "/share/data/spider/pic/plan/plan3/unit/video_unit_23_3.mp4",
+        "detailIntroList": "audio_1_76,misc_audio_1_4",
+        "introName": "video_unit_23_3",
+        "introPlayTimes": 2,
+        "planId": 3,
+        "id": 71,
+        "actionDesc": "1、身体触地，双手先推起上半身，再将双腿快速向腹部收回\r\n2、双手在头后击掌之后快速下蹲，没有站立过程\r\n3、跳的越高燃脂效果越好"
+      },
+      {
+        "planVideoName": "高抬腿",
+        "restTime": 0,
+        "planType": 2,
+        "introList": "misc_audio_1_2,audio_3_71",
+        "unitName": "video_unit_21_3",
+        "playTimes": 20,
+        "movementTime": 20,
+        "pictureUrl": "/share/data/spider/pic/plan/plan3/images/picture_index_2_3.jpg",
+        "introMovementTime": 8,
+        "unitList": "audio_1_75*13,misc_audio_3_37,misc_audio_1_9,misc_audio_1_8,misc_audio_1_7,misc_audio_1_6,misc_audio_1_5",
+        "playSort": 7,
+        "guideType": 2,
+        "restList": null,
+        "videoUrl": "/share/data/spider/pic/plan/plan3/unit/video_unit_21_3.mp4",
+        "detailIntroList": "misc_audio_1_44,misc_audio_1_4",
+        "introName": "video_unit_21_3",
+        "introPlayTimes": 2,
+        "planId": 3,
+        "id": 73,
+        "actionDesc": "1、挺直背部，目视前方，脚尖点地\r\n2、保持身体稳定，用力摆臀、抬腿\r\n3、速度越快燃脂效果越好"
+      },
+      {
+        "planVideoName": "俯卧撑",
+        "restTime": 0,
+        "planType": 2,
+        "introList": "misc_audio_1_3,audio_3_70",
+        "unitName": "video_unit_20_3",
+        "playTimes": 5,
+        "movementTime": 20,
+        "pictureUrl": "/share/data/spider/pic/plan/plan3/images/picture_index_1_3.jpg",
+        "introMovementTime": 8,
+        "unitList": "misc_audio_1_5,misc_audio_1_65*3,misc_audio_1_6,misc_audio_1_65*3,misc_audio_1_7,misc_audio_1_65*3,misc_audio_1_8,misc_audio_1_65*3,misc_audio_1_9,misc_audio_1_65*3",
+        "playSort": 8,
+        "guideType": 1,
+        "restList": null,
+        "videoUrl": "/share/data/spider/pic/plan/plan3/unit/video_unit_20_3.mp4",
+        "detailIntroList": "audio_1_76,misc_audio_1_4",
+        "introName": "video_unit_20_3",
+        "introPlayTimes": 2,
+        "planId": 3,
+        "id": 74,
+        "actionDesc": "1、全程收紧腹部核心，挺直背部\r\n2、身体触地，手离开地面后再快速撑起\r\n3、训练过程中可以穿鞋"
+      }
+    ],
+    "title": "Tabata进阶训练-手臂紧致",
+    "warningMinutes": 0,
+    "subTitle": "身体素质尚可并且有基础的训练者",
+    "lessLowheartrateVideoTime": 150,
+    "audioVideoZiplink": "/share/data/spider/pic/plan/plan3/video_audio_3.zip",
+    "heartrateZonesLower": 144,
+    "id": 3,
+    "warningHours": 0,
+    "planSecond": 0,
+    "bgMusicUrl": "audio_2_74",
+    "planCount": 0,
+    "bgPicUrl": "pic_category_huoli.png",
+    "actionsNum": 8,
+    "bannerPicUrl": "/share/data/spider/pic/plan/plan3/picture_banner_3.jpg",
+    "usingBraceletBenefits": "提供量化的锻炼结果\r\n有助增强心肺机能\r\n减少肌肉拉伤和酸痛\r\n使内部锻炼效果最大化\r\n提供量化的锻炼结果\r\n有助增强心肺机能\r\n减少肌肉拉伤和酸痛\r\n使内部锻炼效果最大化\r\n防止过度锻炼导致身体伤害或锻炼力度不足\r\n",
+    "firstLowheartrateVideoFn": "misc_audio_3_62",
+    "planInstruct": "Tabata是由日本科学家Izumi Tabata博士开创的训练方法，最初用于竞技体育的极限体能训练。此调理计划需要全身协调发力完成动作，有一定技术难度，追求轻盈且有力量的感觉，比较适合现代人群的生活节奏。同时该计划独创软硬件智能结合模式，通过接入贯众运动心率手环，进行实时运动心率监测和有效运动干预，从而实现运动效果最大化。",
+    "shortDescription": "建议搭配贯众运动心率手环使用",
+    "isSubscribe": 1,
+    "peopleNum": 13297,
+    "moreHighheartrateVideoFn": "misc_audio_3_63",
+    "coverPicUrl": "/share/data/spider/pic/plan/plan3/picture_cover_3.jpg",
+    "moveTime": 252,
+    "attention": "此项调理计划难度为中级，适合身体素质尚可且有一定训练基础的健身爱好者，同时对心肺功能也有一定要求，如有心血管疾病及功能障碍者不适宜参与。由于本调理计划内容专业，强烈建议先将所有动作的要点查看一遍，对于所有动作熟悉，再开始正式训练，效果更佳。",
+    "heartrateZonesUpper": 158,
+    "coast": 0
+  },
+  "recode": 1
+}

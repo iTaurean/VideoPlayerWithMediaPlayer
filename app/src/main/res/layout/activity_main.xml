@@ -6,4 +6,9 @@
     android:orientation="vertical">
 
 
+    <Button
+        android:id="@+id/btn_enter_media_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击进入多媒体播放" />
 </LinearLayout>

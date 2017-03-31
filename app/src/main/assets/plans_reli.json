@@ -1,0 +1,71 @@
+{
+  "msg": "操作成功",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "name": "零基础适应性训练",
+        "pictureName": "pic_lingshiying.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":2
+      },
+      {
+        "id": 2,
+        "name": "全身拉伸",
+        "pictureName": "pic_quanshen.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":3
+      },
+      {
+        "id": 3,
+        "name": "综合热身",
+        "pictureName": "pic_zonghereshen.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":3
+      },
+      {
+        "id": 4,
+        "name": "睡前拉伸",
+        "pictureName": "pic_shuiqian.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":3
+      },
+      {
+        "id": 5,
+        "name": "上肢拉伸",
+        "pictureName": "pic_shangzhi.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":3
+      },
+      {
+        "id": 6,
+        "name": "躯干拉伸",
+        "pictureName": "pic_qugan.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":3
+      },
+      {
+        "id": 7,
+        "name": "下肢拉伸",
+        "pictureName": "pic_xiazhi.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":3
+      }
+    ]
+  },
+  "recode": 1
+}

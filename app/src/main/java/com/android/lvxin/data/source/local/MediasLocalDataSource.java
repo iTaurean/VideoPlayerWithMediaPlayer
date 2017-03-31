@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.android.lvxin.data.VideoInfo;
 import com.android.lvxin.data.AudioInfo;
+import com.android.lvxin.data.VideoInfo;
 import com.android.lvxin.data.source.MediasDataSource;
 
 import java.util.ArrayList;
@@ -65,27 +65,147 @@ public class MediasLocalDataSource implements MediasDataSource {
 //                MediaStore.Video.Media.DURATION,
 //        };
 //
-//        Cursor cursor = mContext.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoColumns, null, null, null);
+//        Cursor cursor = mContext.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
+// videoColumns, null, null, null);
 //        int totalCount = cursor.getCount();
 //        cursor.moveToFirst();
 //        for (int i = 0; i < totalCount; i++) {
 //            int videoId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
 //            String videoPath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
-//            long videoDuration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));
+//            long duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));
 //            String videoTitle = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
 //            int videoSize = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE));
-//            VideoInfo item = new VideoInfo(videoId, videoPath, videoTitle, videoSize, videoDuration);
+//            VideoInfo item = new VideoInfo(videoId, videoPath, videoTitle, videoSize, duration);
 //            videos.add(item);
 //            cursor.moveToNext();
 //        }
 //        cursor.close();
-        VideoInfo videoInfo = new VideoInfo();
-        videoInfo.videoName = "video_unit_1_1.mp4";
-        videoInfo.videoDuration = 3;
+        List<AudioInfo> audioInfoList = new ArrayList<>();
+        AudioInfo audioInfo = new AudioInfo("misc_audio_1_1");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("audio_1_56");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_39");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_7");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_6");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_5");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_4");
+        audioInfoList.add(audioInfo);
+
+        VideoInfo videoInfo = new VideoInfo("video_intro_1_1", 9, "蛙泳划臂", 1, 1, 0, audioInfoList);
         videos.add(videoInfo);
-         videoInfo = new VideoInfo();
-        videoInfo.videoName = "video_unit_2_1.mp4";
-        videoInfo.videoDuration = 1;
+
+        audioInfoList = new ArrayList<>();
+        audioInfo = new AudioInfo("misc_audio_1_5");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_6");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_7");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_8");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_9");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_10");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_65");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_11");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_12");
+        audioInfoList.add(audioInfo);
+
+        videoInfo = new VideoInfo("video_unit_1_1", 3, "蛙泳划臂", 8, 1, 0, audioInfoList);
+        videos.add(videoInfo);
+
+        audioInfoList = new ArrayList<>();
+        audioInfo = new AudioInfo("misc_audio_1_2");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("audio_1_53");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_44");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_7");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_6");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_5");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_4");
+        audioInfoList.add(audioInfo);
+
+        videoInfo = new VideoInfo("video_intro_2_1", 1, "蛙泳划臂", 8, 1, 0, audioInfoList);
+        videos.add(videoInfo);
+
+        audioInfoList = new ArrayList<>();
+        audioInfo = new AudioInfo("misc_audio_1_5");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_6");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_7");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_8");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_9");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_10");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_11");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_12");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_13");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_14");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_15");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_16");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_17");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_18");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_19");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_20");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_21");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_22");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_23");
+        audioInfoList.add(audioInfo);
+        audioInfo = new AudioInfo("misc_audio_1_24");
+        audioInfoList.add(audioInfo);
+
+        videoInfo = new VideoInfo("video_unit_2_1", 1, "蛙泳划臂", 20, 1, 20, audioInfoList);
         videos.add(videoInfo);
 
         return videos;
@@ -101,7 +221,8 @@ public class MediasLocalDataSource implements MediasDataSource {
                 MediaStore.Video.Media.DURATION,
         };
 
-        Cursor cursor = mContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, videoColumns, null, null, null);
+        Cursor cursor = mContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, videoColumns,
+                null, null, null);
         int totalCount = cursor.getCount();
         cursor.moveToFirst();
         for (int i = 0; i < totalCount; i++) {

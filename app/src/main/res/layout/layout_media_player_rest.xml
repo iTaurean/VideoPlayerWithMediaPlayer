@@ -9,7 +9,7 @@
     android:visibility="gone">
 
 
-    <com.android.lvxin.videoplayer.CircleProgressBar
+    <com.android.lvxin.widget.CircleProgressBar
         android:id="@+id/rest_countdown"
         android:layout_width="100dp"
         android:layout_height="100dp"

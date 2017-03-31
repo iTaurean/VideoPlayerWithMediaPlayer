@@ -1,0 +1,71 @@
+{
+  "msg": "操作成功",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "name": "HIIT唤醒",
+        "pictureName": "pic_huanxing.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      },
+      {
+        "id": 2,
+        "name": "零基础适应性训练",
+        "pictureName": "pic_lingshiying.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      },
+      {
+        "id": 3,
+        "name": "综合热身",
+        "pictureName": "pic_zonghereshen.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      },
+      {
+        "id": 4,
+        "name": "腹肌训练入门",
+        "pictureName": "pic_fuji.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      },
+      {
+        "id": 5,
+        "name": "哑铃手臂塑形",
+        "pictureName": "pic_yaling.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      },
+      {
+        "id": 6,
+        "name": "深蹲入门",
+        "pictureName": "pic_shendun.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      },
+      {
+        "id": 7,
+        "name": "HIIT燃脂初级",
+        "pictureName": "pic_ranzhi.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost":2,
+        "category":1
+      }
+    ]
+  },
+  "recode": 1
+}

@@ -1,0 +1,71 @@
+{
+  "msg": "操作成功",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "name": "深蹲入门",
+        "pictureName": "pic_shendun.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      },
+      {
+        "id": 2,
+        "name": "哑铃胸部训练",
+        "pictureName": "pic_yaling_xiongbu.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      },
+      {
+        "id": 3,
+        "name": "腹肌训练入门",
+        "pictureName": "pic_fuji.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      },
+      {
+        "id": 4,
+        "name": "哑铃肩部塑形训练",
+        "pictureName": "pic_yaling_janbu.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      },
+      {
+        "id": 5,
+        "name": "徒手胸肌强化训练",
+        "pictureName": "pic_tushou.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      },
+      {
+        "id": 6,
+        "name": "哑铃手臂塑形",
+        "pictureName": "pic_yaling.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      },
+      {
+        "id": 7,
+        "name": "弹力背部紧致",
+        "pictureName": "pic_tanli.png",
+        "difficulty": 1,
+        "hot": 17000,
+        "cost": 2,
+        "category": 4
+      }
+    ]
+  },
+  "recode": 1
+}

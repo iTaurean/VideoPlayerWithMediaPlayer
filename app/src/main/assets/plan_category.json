@@ -1,0 +1,32 @@
+{
+"msg": "操作成功",
+"data": {
+"list": [
+{
+"id": 1,
+"name": "零基础入门",
+"planCount":7,
+"pictureName": "pic_category_zero.png"
+},
+{
+"id": 2,
+"name": "活力燃脂",
+"planCount":7,
+"pictureName": "pic_category_huoli.png"
+},
+{
+"id": 3,
+"name": "热力拉伸",
+"planCount":7,
+"pictureName": "pic_category_reli.png"
+},
+{
+"id": 4,
+"name": "家庭塑形",
+"planCount":7,
+"pictureName": "pic_category_suxing.png"
+}
+]
+},
+"recode": 1
+}

@@ -1,9 +1,13 @@
 package com.android.lvxin.videos;
 
+import android.content.Context;
+
 import com.android.lvxin.data.VideoInfo;
 import com.android.lvxin.data.source.MediasDataSource;
 import com.android.lvxin.data.source.MediasRepository;
+import com.android.lvxin.videoplayer.CombineFiles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +17,11 @@ import java.util.List;
  * @Date: 6/12/16 16:35
  */
 public class VideosPresenter implements VideosContract.Presenter {
+    private static final String TAG = "VideosPresenter";
     private final MediasRepository videosRepository;
     private final VideosContract.View videosView;
+
+    private List<VideoInfo> mVideoData = new ArrayList<>();
 
     public VideosPresenter(MediasRepository videosRepository, VideosContract.View videosView) {
         this.videosRepository = videosRepository;
@@ -27,7 +34,16 @@ public class VideosPresenter implements VideosContract.Presenter {
     public void loadVideos() {
         videosRepository.getVideos(new MediasDataSource.LoadVideosCallback() {
             @Override
-            public void onVideosLoaded(List<VideoInfo> videos) {
+            public void onVideosLoaded(final List<VideoInfo> videos) {
+                mVideoData = videos;
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        CombineFiles cf = new CombineFiles(videosView.getContext());
+                        cf.start(videos);
+                    }
+                }).start();
                 // show the videos to ui
                 if (videos.isEmpty()) {
                     videosView.showNoVideos();
@@ -52,14 +68,12 @@ public class VideosPresenter implements VideosContract.Presenter {
 
     @Override
     public void openVideos(List<VideoInfo> requestedVideos) {
-        if (null != requestedVideos) {
-            videosView.openVideoDetailUi(requestedVideos);
-
-        }
+        videosView.openVideoDetailUi(mVideoData);
     }
 
     @Override
-    public void start() {
+    public void start(Context context) {
         loadVideos();
     }
+
 }

@@ -17,7 +17,6 @@ import android.media.MediaMetadataRetriever;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,8 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
     private Bitmap mDefaultThumbnailBitmap;
 
 
-    public StaggeredAdapter(Context context, int thumbnailParentWidth, OnStaggeredAdapterListener onStaggeredAdapterInformation) {
+    public StaggeredAdapter(Context context, int thumbnailParentWidth,
+            OnStaggeredAdapterListener onStaggeredAdapterInformation) {
         mContext = context;
         mThumbnailParentWidth = thumbnailParentWidth;
         mOnStaggeredAdapterInformation = onStaggeredAdapterInformation;
@@ -121,22 +121,23 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         }
 
         VideoInfo item = mItems.get(position);
-        itemHolder.setVideoTitle(item.videoName);
-        itemHolder.setVideoSize(item.videoSize + "");
-        itemHolder.setVideoDuration(item.videoDuration);
-        itemHolder.setVideoProgress(item.videoProgress);
+        itemHolder.setVideoTitle(item.getFileName());
+        itemHolder.setVideoSize(item.getVideoSize() + "");
+        itemHolder.setVideoDuration(item.getDuration());
+        itemHolder.setVideoProgress(item.getVideoProgress());
 
-        loadThumbnailBitmap(item.videoId,
-                item.videoDuration,
-                item.videoProgress,
-                item.videoPath,
-                itemHolder.getVideoThumbnail());
+        loadThumbnailBitmap(item.getVideoId(),
+                            item.getDuration(),
+                            item.getVideoProgress(),
+                            item.getVideoPath(),
+                            itemHolder.getVideoThumbnail());
     }
 
     private void onItemHolderClick(VerticalItemHolder itemHolder) {
         if (mOnItemClickListener != null) {
             mOnItemClickListener.onItemClick(null, itemHolder.itemView,
-                    itemHolder.getAdapterPosition(), mItems.get(itemHolder.getAdapterPosition()).videoId);
+                                             itemHolder.getAdapterPosition(),
+                                             mItems.get(itemHolder.getAdapterPosition()).getVideoId());
         }
     }
 
@@ -147,7 +148,8 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
     private void onItemHolderLongClick(VerticalItemHolder itemHolder) {
         if (mOnItemLongClickListener != null) {
             mOnItemLongClickListener.onItemLongClick(null, itemHolder.itemView,
-                    itemHolder.getAdapterPosition(), mItems.get(itemHolder.getAdapterPosition()).videoId);
+                                                     itemHolder.getAdapterPosition(),
+                                                     mItems.get(itemHolder.getAdapterPosition()).getVideoId());
         }
     }
 
@@ -165,13 +167,13 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         };
 
 
-        Cursor cursor = mContext.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoColumns, null, null, null);
+        Cursor cursor = mContext.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoColumns,
+                                                            null, null, null);
         int totalCount = cursor.getCount();
         // no video, then show the no video hint
         if (totalCount <= 0) {
             mOnStaggeredAdapterInformation.onStaggeredAdapterInformation();
         }
-        Log.i("totalCount.........", "count");
         cursor.moveToFirst();
         for (int i = 0; i < totalCount; i++) {
             int videoId = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
@@ -200,14 +202,16 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
         return Bitmap.createBitmap(originalBitmap, 0, 0, originalBitmap.getWidth(),
-                originalBitmap.getHeight(), matrix, true);
+                                   originalBitmap.getHeight(), matrix, true);
     }
 
-    private void loadThumbnailBitmap(int videoId, long videoDuration, long videoProgress, String videoPath, ImageView thumbnailView) {
+    private void loadThumbnailBitmap(int videoId, long videoDuration, long videoProgress, String videoPath,
+            ImageView thumbnailView) {
         if (cancelPotionalWork(videoId, thumbnailView)) {
-            final ThumbnailBitmapWorkTask task = new ThumbnailBitmapWorkTask(videoId, videoDuration, videoProgress, videoPath, thumbnailView);
+            final ThumbnailBitmapWorkTask task = new ThumbnailBitmapWorkTask(videoId, videoDuration, videoProgress,
+                                                                             videoPath, thumbnailView);
             final AsyncDrawable asyncDrawable = new AsyncDrawable(mContext.getResources(),
-                    mDefaultThumbnailBitmap, task);
+                                                                  mDefaultThumbnailBitmap, task);
             thumbnailView.setImageDrawable(asyncDrawable);
             task.execute(videoId);
         }
@@ -217,7 +221,8 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         void onStaggeredAdapterInformation();
     }
 
-    public static class VerticalItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public static class VerticalItemHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnLongClickListener {
 
         private LinearLayout videoTitleLayout;
         private LinearLayout videoSizeLayout;
@@ -228,7 +233,7 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         private StaggeredAdapter mAdapter;
 
         public VerticalItemHolder(View v,
-                                  StaggeredAdapter adapter) {
+                StaggeredAdapter adapter) {
             super(v);
             v.setOnClickListener(this);
             v.setOnLongClickListener(this);
@@ -298,7 +303,7 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         private final WeakReference<ThumbnailBitmapWorkTask> thumbnailBitmapWorkTaskWeakReference;
 
         public AsyncDrawable(Resources res, Bitmap bitmap,
-                             ThumbnailBitmapWorkTask thumbnailBitmapWorkTask) {
+                ThumbnailBitmapWorkTask thumbnailBitmapWorkTask) {
             super(res, bitmap);
             thumbnailBitmapWorkTaskWeakReference = new WeakReference<ThumbnailBitmapWorkTask>(thumbnailBitmapWorkTask);
         }
@@ -315,7 +320,8 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
         private long videoProgress;
         private String videoPath;
 
-        public ThumbnailBitmapWorkTask(int videoId, long videoDuration, long videoProgress, String videoPath, ImageView imageView) {
+        public ThumbnailBitmapWorkTask(int videoId, long videoDuration, long videoProgress, String videoPath,
+                ImageView imageView) {
             imageViewWeakReference = new WeakReference<ImageView>(imageView);
             this.videoId = videoId;
             this.videoDuration = videoDuration;
@@ -330,7 +336,8 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
             if (!thumbnailParent.exists()) {
                 thumbnailParent.mkdir();
             }
-            String videoThumbnailPathName = mContext.getExternalCacheDir() + "/list_thumbnail/" + videoId + "_" + videoProgress;
+            String videoThumbnailPathName = mContext.getExternalCacheDir() + "/list_thumbnail/" + videoId + "_" +
+                    videoProgress;
             File file = new File(videoThumbnailPathName);
             if (file.exists()) {
                 bitmap = BitmapFactory.decodeFile(videoThumbnailPathName);
@@ -362,8 +369,10 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
             try {
                 mediaMetadataRetriever = new MediaMetadataRetriever();
                 mediaMetadataRetriever.setDataSource(mContext,
-                        ContentUris.withAppendedId(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoId));
-                srcBitmap = mediaMetadataRetriever.getFrameAtTime(videoProgress * 1000, MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+                                                     ContentUris.withAppendedId(
+                                                             MediaStore.Video.Media.EXTERNAL_CONTENT_URI, videoId));
+                srcBitmap = mediaMetadataRetriever.getFrameAtTime(videoProgress * 1000,
+                                                                  MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
             } catch (Exception e) {
             } finally {
                 if (mediaMetadataRetriever != null) {
@@ -372,10 +381,10 @@ public class StaggeredAdapter extends RecyclerView.Adapter<StaggeredAdapter.Vert
             }
             if (srcBitmap == null) {
                 srcBitmap = MediaStore.Video.Thumbnails.getThumbnail(mContext.getContentResolver(), videoId,
-                        MediaStore.Video.Thumbnails.MINI_KIND, null);
+                                                                     MediaStore.Video.Thumbnails.MINI_KIND, null);
                 if (srcBitmap == null) {
                     srcBitmap = MediaStore.Video.Thumbnails.getThumbnail(mContext.getContentResolver(), videoId,
-                            MediaStore.Video.Thumbnails.MICRO_KIND, null);
+                                                                         MediaStore.Video.Thumbnails.MICRO_KIND, null);
                 }
             }
             return scaleBitmap(srcBitmap, mThumbnailParentWidth, mThumbnailParentWidth);

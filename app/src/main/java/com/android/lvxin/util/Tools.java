@@ -91,4 +91,16 @@ public class Tools {
 
         return (int) (dpValue * scale + 0.5f);
     }
+
+    public static String getAbsolutePath(Context context) {
+        return context.getExternalFilesDir(null).getAbsolutePath();
+    }
+
+    public static String getVideoPath(Context context, String fileName) {
+        return context.getExternalFilesDir(null).getAbsolutePath() + "/" + fileName + ".mp4";
+    }
+
+    public static String getAudioPath(Context context, String fileName) {
+        return context.getExternalFilesDir(null).getAbsolutePath() + "/audios/" + fileName + ".mp3";
+    }
 }

@@ -12,4 +12,6 @@
     <color name="trans_blank_bg_70">#4cc2d3f5</color>
     <color name="heart_rate_red">#FD1D4B</color>
     <color name="theme_color">#3c6cde</color> <!-- 主题色 -->
+
+    <color name="progress_bg_color">#cad4ed</color>
 </resources>

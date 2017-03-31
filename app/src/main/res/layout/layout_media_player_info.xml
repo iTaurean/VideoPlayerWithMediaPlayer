@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:gravity="right"
-            android:textColor="@color/theme_button_deep_bg"
-            android:textSize="16sp" />
+            android:textColor="@android:color/white"
+            android:textSize="16sp"/>
 
         <ImageView
             android:id="@+id/play_attention"
@@ -25,17 +25,19 @@
             android:layout_height="51dp"
             android:layout_gravity="center_vertical|right"
             android:layout_weight="0"
-            android:background="@drawable/image_view_selector"
+            android:background="@drawable/imageview_selector"
             android:scaleType="center"
-            android:src="@drawable/ic_play_attention" />
+            android:src="@mipmap/ic_play_attention"
+            android:visibility="gone"/>
 
     </LinearLayout>
 
-    <com.android.lvxin.videoplayer.MediaProgressBar
+    <!-- 视频播放进度条 -->
+    <com.android.lvxin.widget.MediaProgressBar
         android:id="@+id/play_progress"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <!-- 左下角圆形进度条 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,14 +58,13 @@
                 android:orientation="horizontal"
                 android:paddingBottom="16dp">
 
-                <com.android.lvxin.videoplayer.CircleProgressBar
+                <com.android.lvxin.widget.CircleProgressBar
                     android:id="@+id/play_circle_progress"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
 
-                    android:layout_marginLeft="16dp" />
+                    android:layout_marginLeft="16dp"/>
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -70,38 +72,58 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:orientation="vertical"
-                android:paddingBottom="10dp">
+                android:paddingBottom="10dp"
+                android:visibility="gone">
 
-                <LinearLayout
+                <!-- 心率相关动画 -->
+                <ImageView
+                    android:id="@+id/player_heart_rate_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <!-- 心率显示相关 -->
+                <RelativeLayout
+                    android:id="@+id/play_heart_rate_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
+                    android:layout_gravity="right"
                     android:background="@drawable/two_left_arc_selector"
-                    android:orientation="vertical"
-                    android:paddingBottom="5dp"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
-                    android:paddingTop="5dp">
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:id="@+id/play_heart_connect_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/imageview_selector"
+                        android:scaleType="center"
+                        android:visibility="visible"/>
 
                     <TextView
                         android:id="@+id/play_heart_rate_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="120bpm"
-                        android:textColor="@color/white"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/play_heart_connect_status"
+                        android:gravity="center_vertical"
+                        android:text="--bpm"
+                        android:textColor="@android:color/white"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:textStyle="bold"/>
+                </RelativeLayout>
 
+                <!-- 播放时间 -->
                 <TextView
-                    android:id="@+id/play_time_remain"
+                    android:id="@+id/play_time_passed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="5dp"
-                    android:text="00:23"
-                    android:textColor="@color/white"
+                    android:text="00:00"
+                    android:textColor="@android:color/white"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

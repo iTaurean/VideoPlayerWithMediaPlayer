@@ -1,0 +1,38 @@
+{
+  "msg": "操作成功",
+  "data": {
+    "list": [
+      {
+        "id": 1,
+        "name": "仅购买本计划",
+        "price": 10,
+        "pictureName": "pic_current.jpg"
+      },
+      {
+        "id": 2,
+        "name": "1个月会员",
+        "price": 99,
+        "pictureName": "pic_a_month.png"
+      },
+      {
+        "id": 3,
+        "name": "3个月会员",
+        "price": 299,
+        "pictureName": "pic_a_quarter.jpg"
+      },
+      {
+        "id": 4,
+        "name": "6个月会员",
+        "price": 399,
+        "pictureName": "pic_half_year.png"
+      },
+      {
+        "id": 5,
+        "name": "12个月会员",
+        "price": 599,
+        "pictureName": "pic_a_year.png"
+      }
+    ]
+  },
+  "recode": 1
+}

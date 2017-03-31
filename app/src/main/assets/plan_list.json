@@ -1,0 +1,50 @@
+{
+"msg": "操作成功",
+"data": {
+"list": [
+{
+"isNewPlan": 1,
+"crowd": "减脂需求强烈，有一定训练经验人群",
+"actionsNum": 15,
+"pictureUrl": "/share/data/spider/pic/plan/plan1/picture_cover_1.png",
+"moveTime": 1110,
+"daysCount": 0,
+"planName": "HIIT燃脂强化训练",
+"id": 1,
+"isNew": 1,
+"isSubscribe": 1,
+"peopleNum": 463,
+"indexPictureUrl": "/share/data/spider/pic/plan/plan1/picture_banner_1.png"
+},
+{
+"isNewPlan": 1,
+"crowd": "身体素质尚可的初学者",
+"actionsNum": 8,
+"pictureUrl": "/share/data/spider/pic/plan/plan2/picture_cover_2.jpg",
+"moveTime": 254,
+"daysCount": 0,
+"planName": "Tabata初级训练-突破极限",
+"id": 2,
+"isNew": 1,
+"isSubscribe": 0,
+"peopleNum": 150,
+"indexPictureUrl": "/share/data/spider/pic/plan/plan2/picture_banner_2.jpg"
+},
+{
+"isNewPlan": 1,
+"crowd": "身体素质尚可并且有基础的训练者",
+"actionsNum": 8,
+"pictureUrl": "/share/data/spider/pic/plan/plan3/picture_cover_3.jpg",
+"moveTime": 252,
+"daysCount": 0,
+"planName": "Tabata进阶训练-手臂紧致",
+"id": 3,
+"isNew": 1,
+"isSubscribe": 0,
+"peopleNum": 91,
+"indexPictureUrl": "/share/data/spider/pic/plan/plan3/picture_banner_3.jpg"
+}
+]
+},
+"recode": 1
+}
